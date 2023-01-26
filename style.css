@@ -19,12 +19,12 @@ body {
 .container {
   width: fit-content;
   position: relative;
-  margin-top: -150px;
+  margin-top: -200px;
   margin-left: 20px;
 }
 @media (max-width: 767px) {
   .container {
-    margin-top: -250px;
+    margin-top: -300px;
   }
 }
 .icon {
@@ -158,6 +158,12 @@ body {
   box-shadow: 2px 2px 2px black;
   border-radius: 3px;
   cursor: pointer;
+}
+@media (max-width: 767px) {
+  .colors-picker,
+  .opacity-picker {
+    height: 12px;
+  }
 }
 .opacity-range::before {
   content: "";
