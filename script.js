@@ -16,7 +16,7 @@ let opacityHex = document.querySelector(" .opacity2");
 let type = document.querySelector(".activeValue .type");
 let copy = document.querySelector(".activeValue i");
 const rgba = document.querySelector(".rgba");
-const hexa = document.querySelector(".hexa");
+const txt = document.querySelector(".txt");
 const value = document.querySelector(".value");
 const color = document.querySelector(".color");
 const icon = document.querySelector(".icon");
@@ -63,7 +63,9 @@ icon.addEventListener("click", function (e) {
 });
 function process() {
   document.addEventListener(eventType2, function (e) {
-    e.preventDefault();
+    if (eventType2 === "mousedown") {
+      e.preventDefault();
+    }
     if (pickers.includes(e.target)) {
       e.target.classList.add("active");
       parentRect = e.target.parentElement.getBoundingClientRect();
@@ -274,7 +276,14 @@ type.addEventListener("mouseup", function (e) {
 });
 copy.addEventListener("mousedown", function (e) {
   copy.classList.add("clicked");
-  navigator.clipboard.writeText(bg);
+  if (
+    /Android/i.test(navigator.userAgent) ||
+    /iPad|iPhone|iPod/i.test(navigator.userAgent)
+  ) {
+    navigator.clipboard.writeText(txt.textContent);
+  } else {
+    navigator.clipboard.writeText(bg);
+  }
 });
 copy.addEventListener("mouseup", function (e) {
   setTimeout(() => {
