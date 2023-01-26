@@ -20,6 +20,12 @@ body {
   width: fit-content;
   position: relative;
   margin-top: -150px;
+  margin-left: 20px;
+}
+@media (max-width: 767px) {
+  .container {
+    margin-top: -250px;
+  }
 }
 .icon {
   background-image: conic-gradient(
@@ -80,7 +86,7 @@ body {
 }
 .color-picker-container {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   left: 0;
   width: 300px;
   height: 300px;
@@ -280,7 +286,7 @@ footer {
   justify-content: space-evenly;
   align-items: center;
   background-color: #333;
-  width: 100%;
+  width: 100vw;
   padding: 20px;
 }
 footer a {
@@ -295,7 +301,20 @@ header {
   position: fixed;
   top: 0;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
+
 h1 {
   font-size: 3rem;
+}
+@media (max-width: 767px) {
+  body {
+    justify-content: flex-start;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
 }
