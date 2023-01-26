@@ -1,0 +1,301 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+:root {
+  --color: red;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Permanent Marker", cursive;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: fit-content;
+  position: relative;
+  margin-top: -150px;
+}
+.icon {
+  background-image: conic-gradient(
+    red,
+    violet,
+    blue,
+    rgb(0, 255, 255),
+    green,
+    yellow,
+    orange,
+    red
+  );
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+}
+.icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 3px 3px 3px black;
+}
+
+.icon i {
+  color: White;
+  text-shadow: 2px 2px 1px black;
+  font-size: larger;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.icon:hover {
+  animation: rotate 1s linear infinite;
+}
+.icon:hover::before {
+  animation: rotate 1s linear infinite reverse;
+}
+.icon:hover i {
+  animation: rotateIcon 1s linear infinite reverse;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotateIcon {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+.color-picker-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #333;
+  box-shadow: 10px 10px 9px black;
+  display: none;
+  transition: 0.5s linear;
+}
+.activeWindow {
+  display: flex;
+}
+.color-picker-container .color-block {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.color-picker-container > span {
+  box-shadow: 4px 4px 4px black;
+}
+.colors-range {
+  width: 20px;
+  height: 200px;
+  display: inline-block;
+  background-image: linear-gradient(
+    red,
+    violet,
+    blue,
+    rgb(0, 255, 255),
+    green,
+    yellow,
+    orange,
+    red
+  );
+  position: relative;
+}
+.colors-picker {
+  width: 120%;
+  height: 8px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: -10%;
+  background-color: var(--color);
+  border: 1px solid white;
+  box-shadow: 2px 2px 2px black;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.opacity-range {
+  width: 20px;
+  height: 200px;
+  display: inline-block;
+  background-image: linear-gradient(black, transparent);
+  position: relative;
+}
+.opacity-picker {
+  width: 120%;
+  height: 8px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: -10%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid white;
+  box-shadow: 2px 2px 2px black;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.opacity-range::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  background-image: url(window-of-four-rounded-squares.png);
+  background-size: contain;
+}
+.color-range {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  background-image: linear-gradient(to left, red, white);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.color-range-picker {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  border-radius: 50%;
+  background-color: var(--color);
+  border: 2px solid white;
+  outline: 2px solid black;
+  box-shadow: 2px 2px 2px black;
+  cursor: pointer;
+}
+.color-range::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom, transparent, black);
+}
+.value {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+  color: white;
+  margin-bottom: 16px;
+}
+.value .color {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgb(255, 0, 0, 1);
+  box-shadow: 2px 2px 2px black;
+  border: 2px solid #eee;
+}
+.value .type {
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 3px 3px 5px black;
+  color: white;
+  background-color: #222;
+  transition: 0.5s linear;
+  font-family: sans-serif;
+}
+.value i {
+  text-shadow: 2px 2px 2px black;
+  cursor: pointer;
+}
+.type:hover,
+.value i:hover {
+  transform: scale(0.9);
+}
+.clicked {
+  animation: click 0.3s linear;
+}
+@keyframes click {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 5px black;
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+.value span {
+  width: 25px;
+  display: inline-block;
+  text-align: center;
+  font-family: sans-serif;
+}
+.rgba {
+  width: 80%;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
+.txt {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: sans-serif;
+}
+.activeValue {
+  display: flex;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #333;
+  width: 100%;
+  padding: 20px;
+}
+footer a {
+  text-decoration: none;
+  color: #eee;
+}
+footer a[title="window icons"] {
+  font-size: 10px;
+  margin-top: 10px;
+}
+header {
+  position: fixed;
+  top: 0;
+  padding: 20px;
+}
+h1 {
+  font-size: 3rem;
+}
