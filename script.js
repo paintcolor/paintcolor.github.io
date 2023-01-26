@@ -90,7 +90,6 @@ function process() {
     });
   });
   document.addEventListener(eventType1, function (e) {
-    bg = value.textContent.replace(/\s+/g, " ").trim();
     bgColorrgba = `rgba(${red.textContent},${green.textContent},${blue.textContent},${opacity.textContent})`;
     bgColorrgb = `rgba(${red.textContent},${green.textContent},${blue.textContent})`;
 
@@ -259,6 +258,7 @@ function coloring(e) {
         }
       }
     }
+    bg = value.textContent.replace(/\s+/g, " ").trim();
   } else {
     e.preventDefault();
   }
@@ -276,14 +276,14 @@ type.addEventListener("mouseup", function (e) {
 });
 copy.addEventListener("mousedown", function (e) {
   copy.classList.add("clicked");
-  if (
-    /Android/i.test(navigator.userAgent) ||
-    /iPad|iPhone|iPod/i.test(navigator.userAgent)
-  ) {
-    navigator.clipboard.writeText(txt.textContent);
-  } else {
-    navigator.clipboard.writeText(bg);
-  }
+  // if (
+  //   /Android/i.test(navigator.userAgent) ||
+  //   /iPad|iPhone|iPod/i.test(navigator.userAgent)
+  // ) {
+  //   navigator.clipboard.writeText(txt.textContent);
+  // } else {
+  // }
+  navigator.clipboard.writeText(bg);
 });
 copy.addEventListener("mouseup", function (e) {
   setTimeout(() => {
