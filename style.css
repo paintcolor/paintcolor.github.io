@@ -127,6 +127,7 @@ body {
     red
   );
   position: relative;
+  cursor: pointer;
 }
 .colors-picker {
   width: 120%;
@@ -147,6 +148,7 @@ body {
   display: inline-block;
   background-image: linear-gradient(black, transparent);
   position: relative;
+  cursor: pointer;
 }
 .opacity-picker {
   width: 120%;
