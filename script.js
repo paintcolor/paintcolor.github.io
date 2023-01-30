@@ -169,8 +169,9 @@ class Application {
         e.clientY - this.parentRect.top - this.radius
       }px`;
     }
+this.coloringbg();
     this.coloring(e);
-    this.coloringbg();
+    
   }
   eventUp(e) {
     pickers.forEach((ele) => {
