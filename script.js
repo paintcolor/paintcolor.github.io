@@ -64,7 +64,7 @@ class Application {
     icon.addEventListener("click", function (e) {
       colorWindow.classList.toggle("activeWindow");
     });
-    document.addEventListener("mousedown", this.animating.bind(this));
+    document.addEventListener("click", this.animating.bind(this));
     this.windowSetup();
   }
   windowSetup() {
@@ -81,8 +81,8 @@ class Application {
   }
   hexa() {
     redHex.textContent = (+red.textContent).toString(16);
-    blueHex.textContent = (+green.textContent).toString(16);
-    greenHex.textContent = (+blue.textContent).toString(16);
+    blueHex.textContent = (+blue.textContent).toString(16);
+    greenHex.textContent = (+green.textContent).toString(16);
     opacityHex.textContent = Math.trunc(opacity.textContent * 255).toString(16);
     this.addZero();
   }
@@ -115,6 +115,11 @@ class Application {
     } else if (e.target === copy) {
       return new Promise((resolve) => {
         copy.classList.add("clicked");
+        if (type.textContent === "Hexa") {
+          this.bg = value.textContent.replace(/Hexa/g, "").trim();
+        } else {
+          this.bg = value.textContent.replace(/\s+/g, " ").trim();
+        }
         navigator.clipboard.writeText(this.bg);
         resolve(copy);
       });
@@ -153,8 +158,6 @@ class Application {
       colorRangePicker.style.top = `${
         e.clientY - (this.parentRect.top + this.radius)
       }px`;
-
-      this.coloring(e);
     } else if (e.target === colorsRange || e.target === opacityRange) {
       if (e.target === colorsRange) {
         colorsRangePicker.classList.add("activeColor");
@@ -165,9 +168,9 @@ class Application {
       this.active.style.top = `${
         e.clientY - this.parentRect.top - this.radius
       }px`;
-      this.coloring(e);
-      this.coloringbg();
     }
+    this.coloring(e);
+    this.coloringbg();
   }
   eventUp(e) {
     pickers.forEach((ele) => {
@@ -178,7 +181,6 @@ class Application {
   eventMove(e) {
     this.bgColorrgba = `rgba(${red.textContent},${green.textContent},${blue.textContent},${opacity.textContent})`;
     this.bgColorrgb = `rgb(${red.textContent},${green.textContent},${blue.textContent})`;
-    this.hexa();
     this.coloringbg();
     this.coloring(e);
   }
@@ -364,12 +366,12 @@ class Application {
           }
         }
       }
-      // this.bg = value.textContent.replace(/\s+/g, " ").trim();
     } else {
       e.preventDefault();
     }
     this.bgColorrgba = `rgba(${red.textContent},${green.textContent},${blue.textContent},${opacity.textContent})`;
     this.bgColorrgb = `rgb(${red.textContent},${green.textContent},${blue.textContent})`;
+    this.hexa();
   }
 }
 window.addEventListener("load", function (e) {
