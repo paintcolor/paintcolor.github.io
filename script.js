@@ -138,9 +138,9 @@ class Application {
     }
   }
   eventDown(e) {
-    if (this.eventType2 === "mousedown") {
-      e.preventDefault();
-    }
+    // if (this.eventType2 === "mousedown") {
+    //   e.preventDefault();
+    // }
     if (pickers.includes(e.target)) {
       e.target.classList.add("active");
       this.parentRect = e.target.parentElement.getBoundingClientRect();
@@ -153,10 +153,10 @@ class Application {
       this.active = document.querySelector(".active");
       this.parentRect = e.target.getBoundingClientRect();
       colorRangePicker.style.right = `${
-        this.parentRect.right - (e.clientX + this.radius)
+        this.parentRect.right - (this.x + this.radius)
       }px`;
       colorRangePicker.style.top = `${
-        e.clientY - (this.parentRect.top + this.radius)
+        this.y - (this.parentRect.top + this.radius)
       }px`;
     } else if (e.target === colorsRange || e.target === opacityRange) {
       if (e.target === colorsRange) {
@@ -165,14 +165,10 @@ class Application {
       e.target.querySelector("span").classList.add("active");
       this.active = document.querySelector(".active");
       this.parentRect = e.target.getBoundingClientRect();
-      this.active.style.top = `${
-        e.clientY - this.parentRect.top - this.radius
-      }px`;
+      this.active.style.top = `${this.y - this.parentRect.top - this.radius}px`;
     }
-
     this.coloring(e);
-this.coloringbg();
-    
+    this.coloringbg();
   }
   eventUp(e) {
     pickers.forEach((ele) => {
@@ -195,24 +191,27 @@ this.coloringbg();
       }, 300);
       colorsRangePicker.style.backgroundColor = this.bgColorrgb;
       colorRange.style.backgroundImage = `linear-gradient(to left,${this.bgColorrgb},white)`;
-      colorRangePicker.style.backgroundColor = `${this.bgColorrgb}`;
+      colorRangePicker.style.backgroundColor = this.bgColorrgb;
       colorRangePicker.style.top = `-${this.radius}px`;
       colorRangePicker.style.right = `-${this.radius}px`;
     }
 
     color.style.backgroundColor = this.bgColorrgba;
   }
-  coloring(e) {
-    colorRangePicker.style.backgroundColor = this.bgColorrgb;
+  eventSwitch(e) {
+    if (e.type === "mousemove" || e.type === "mousedown") {
+      e.preventDefault();
 
-    let fraction = 100 / 6;
-    if (this.eventType1 === "mousemove") {
       this.x = e.clientX;
       this.y = e.clientY;
-    } else if (this.eventType1 === "touchmove") {
+    } else if (e.type === "touchmove" || e.type === "touchstart") {
       this.x = e.changedTouches[0].clientX;
       this.y = e.changedTouches[0].clientY;
     }
+  }
+  coloring(e) {
+    let fraction = 100 / 6;
+    this.eventSwitch(e);
     if (this.active) {
       if (
         colorsRangePicker.classList.contains("active") ||
@@ -368,12 +367,11 @@ this.coloringbg();
           }
         }
       }
-    } else {
-      e.preventDefault();
     }
     this.bgColorrgba = `rgba(${red.textContent},${green.textContent},${blue.textContent},${opacity.textContent})`;
     this.bgColorrgb = `rgb(${red.textContent},${green.textContent},${blue.textContent})`;
     this.hexa();
+    colorRangePicker.style.backgroundColor = this.bgColorrgb;
   }
 }
 window.addEventListener("load", function (e) {
