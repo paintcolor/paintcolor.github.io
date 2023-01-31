@@ -122,12 +122,11 @@ body {
     blue 35%,
     rgb(0, 255, 255) 45%,
     green 65%,
-    yellow 75%,
+    yellow 85%,
     orange 90%,
     red
   );
   position: relative;
-  cursor: pointer;
 }
 .colors-picker {
   width: 120%;
@@ -148,7 +147,6 @@ body {
   display: inline-block;
   background-image: linear-gradient(black, transparent);
   position: relative;
-  cursor: pointer;
 }
 .opacity-picker {
   width: 120%;
@@ -275,7 +273,7 @@ body {
 .hexa {
   width: 80%;
   display: none;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 .txt {
@@ -284,6 +282,9 @@ body {
   justify-content: space-evenly;
   align-items: center;
   font-family: sans-serif;
+}
+.txt span {
+  width: 30px;
 }
 .activeValue {
   display: flex;
