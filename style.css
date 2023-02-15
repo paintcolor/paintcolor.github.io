@@ -166,6 +166,7 @@ body {
   .opacity-picker {
     height: 12px;
   }
+.icon{cursor:default;} 
 }
 .opacity-range::before {
   content: "";
