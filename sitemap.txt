@@ -1,3 +1,5 @@
-https://paintcolor.github.io/
-https://paintcolor.github.io/privasy.html
-https://paintcolor.github.io/trems.html
+https://paintcolor.github.io
+https://paintcolor.github.io/about.html
+https://paintcolor.github.io/contact.html
+https://paintcolor.github.io/privacy.html
+https://paintcolor.github.io/terms.html
